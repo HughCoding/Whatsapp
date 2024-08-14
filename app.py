@@ -12,7 +12,7 @@ def obter_mensagem():
     # Configurar a janela principal
     root = tk.Tk()
     root.title("")  
-    root.geometry("600x400") 
+    root.geometry("500x400") 
     root.configure(bg='#f8f9fa') 
 
     # Função para enviar mensagem e fechar a janela
