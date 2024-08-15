@@ -66,3 +66,47 @@ pyautogui.press('enter')
 sleep(2) 
 
 print("Mensagem enviada!")
+
+
+
+
+from urllib.parse import quote
+import webbrowser
+from time import sleep
+import pyautogui
+import schedule
+import time
+
+# Mensagem pré-definida
+mensagem = "OI ISSO É UMA MENSAGEM AUTOMATICA"
+
+# Configuração do número de telefone e link do WhatsApp
+telefone = '27997611547'
+link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
+
+# Função para enviar a mensagem no horário programado
+def enviar_mensagem():
+    # Abrir o WhatsApp Web
+    webbrowser.open('https://web.whatsapp.com/')
+    sleep(10)  # Espera o WhatsApp Web carregar
+
+    # Abrir o link com a mensagem
+    webbrowser.open(link_mensagem_whatsapp)
+    sleep(15)  # Aguarda o carregamento do chat
+
+    # Pressionar enter para enviar a mensagem
+    pyautogui.press('enter')
+    sleep(2)
+
+    # Fechar a aba do navegador (opcional)
+    pyautogui.hotkey('ctrl', 'w')
+
+# Agendar a mensagem para ser enviada às 9h da manhã
+schedule.every().day.at("____").do(enviar_mensagem)
+
+# Loop para manter o agendamento rodando
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+
